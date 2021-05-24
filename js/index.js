@@ -1,5 +1,20 @@
 // alert("yes");
 
+//change logo color 
+var t = setInterval(function(){
+  var logo = document.getElementsByClassName("site-name-container")[0];
+  if(logo.className == "site-name-container bg-color-1"){
+    logo.className="site-name-container bg-color-2";
+  }
+  else {
+    logo.className="site-name-container bg-color-1";
+  }
+ }, 3000);
+//on keydown => stop change logo color
+document.onkeydown = function (){
+ clearInterval(t);
+};
+
 //Back to top button; on scroll 
 var btn = document.getElementById('button');
 function scrollFunct(){
@@ -11,18 +26,6 @@ function scrollFunct(){
     }
 };
 window.addEventListener("scroll", scrollFunct);
-
-
-
-// document.getElementsByClassName("gallery-item fitness")[0].style.display="none";
-// document.getElementsByClassName("gallery-item fitness")[0].style.display="block";
-
-// document.getElementsByClassName("gallery-filter tabs clearfix filters-button-group")[0].children
-// document.getElementsByClassName("filters-button-group")[0].children[0]
-
-// animals[0].attributes["data-filter"]
-
-//document.getElementsByClassName("filters-button-group")[0].children[0].children[0].innerText ="show all";
 
 
 //gallery photo selection
@@ -62,3 +65,18 @@ question3.onclick = function(){
     message.style.visibility="hidden";
   }
 };
+
+
+//localStorage
+document.getElementsByClassName("btn-3")[0].onclick = function(){
+var name = document.getElementsByName("name")[0].value;
+var email = document.getElementsByName("email")[0].value;
+var message = document.getElementsByName("message")[0].value;
+  if(name && email && message){
+    window.localStorage.setItem("name",name);
+    window.localStorage.setItem("email",email);
+    window.localStorage.setItem("message",message);
+    alert("Thank you, " + localStorage.getItem("name") +"!\nWe'll send you an email at " + localStorage.getItem("email") + " in " + Math.floor(Math.random()*10) + " day(s).");
+  }
+};
+localStorage.clear();
